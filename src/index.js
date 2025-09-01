@@ -2,6 +2,7 @@ import express from "express"
 import app from "./app.js"
 import connectDB from "./db/index.js"
 import dotenv from "dotenv"
+import userRoutes from "./routes/user.routes.js"
 dotenv.config({
     path: "./.env"
 })
@@ -9,9 +10,9 @@ dotenv.config({
 // Define the port from environment variables or use a default value
 const PORT = process.env.PORT || 8000
 
-app.get("/", (req, res) => {
-  res.send("Hello World!")
-})
+// Mount user-related routes at the /api/v1 path
+app.use("/api/v1", userRoutes)
+
 
 
 // Start the server only after successful database connection
